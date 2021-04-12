@@ -47,6 +47,15 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  fonts:
+    - family: NotoSansSC
+      fonts: 
+        - asset: assets/fonts/Noto_Sans_SC/NotoSansSC-Regular.otf
+        - asset: assets/fonts/Noto_Sans_SC/NotoSansSC-Medium.otf
+        - weight: 500
+        - asset: assets/fonts/Noto_Sans_SC/NotoSansSC-Bold.otf
+        - weight: 600
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
