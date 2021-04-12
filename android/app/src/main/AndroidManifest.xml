@@ -2,7 +2,10 @@
     package="com.example.blog_flutter">
    <application
         android:label="blog_flutter"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+    >
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -38,4 +41,7 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+        <uses-permission android:name="android.permission.INTERNET"/>
+
+
 </manifest>

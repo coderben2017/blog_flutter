@@ -1,5 +1,5 @@
 import 'package:blog_flutter/config.dart';
-import 'package:english_words/english_words.dart';
+import 'package:blog_flutter/http.dart';
 import 'package:flutter/material.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -32,7 +32,8 @@ class HomeWidgetState extends State<HomeWidget> {
     800: Color(0xFF2E7D32),
     900: Color(0xFF1B5E20),
   });
-  var _articles = <String>[];
+  var _articles = <dynamic>[];
+  var _start = 0, _limit = 10, _total = 0;
 
   @override
   void initState() {
@@ -41,18 +42,16 @@ class HomeWidgetState extends State<HomeWidget> {
   }
 
   void _onTapArticle(index) {
-    print(_articles[index]);
+    print(index);
   }
 
-  void _getArticles() {
-    Future.delayed(Duration(seconds: 1)).then((value) {
-      setState(() {
-        _articles.addAll(generateWordPairs()
-            .take(20)
-            .map((wordPair) => wordPair.asPascalCase)
-            .toList());
-      });
-      print(_articles);
+  void _getArticles() async {
+    print('$_start ~ $_limit');
+    var response = await http
+        .get('/articles', queryParameters: {'start': _start, 'limit': _limit});
+    setState(() {
+      _articles.addAll(response.data['data']);
+      _total = response.data['total'];
     });
   }
 
@@ -72,7 +71,8 @@ class HomeWidgetState extends State<HomeWidget> {
             final backgroundColor = index % 2 == 0 ? lightGreen : lightGrey;
 
             if (_articles.length == 0 || index == _articles.length - 1) {
-              if (_articles.length < 51) {
+              if (_articles.length < _total - 1) {
+                _start += _limit;
                 _getArticles();
                 return Container(
                   padding: EdgeInsets.all(16),
@@ -98,12 +98,12 @@ class HomeWidgetState extends State<HomeWidget> {
             return Container(
               decoration: BoxDecoration(color: backgroundColor),
               child: ListTile(
-                title: Text(_articles[index],
+                title: Text(_articles[index]['title'],
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontSize: 22, height: 1.5, color: Colors.green)),
                 subtitle: Text(
-                  _articles[index] * 15,
+                  _articles[index]['content'],
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: TextStyle(fontSize: 16, height: 1.5),

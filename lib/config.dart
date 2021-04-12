@@ -17,3 +17,5 @@ const primaryColor = const MaterialColor(
     900: Color(0xFF1B5E20),
   },
 );
+
+const baseUrl = 'http://192.168.1.135:3001';
