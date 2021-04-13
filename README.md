@@ -1,16 +1,15 @@
 # flutter个人博客模板
+供flutter初学者参考借鉴
 
-A new Flutter project.
+### 功能清单
+- [x] 网络请求封装（Dio）
+- [x] 路由跳转、传值
+- [x] 自定义字体
+- [ ] 国际化
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 页面清单
+- [x] 首页（文章列表）
+- [x] 文章详情
+- [ ] 登录
+- [ ] 新增文章
+- [ ] 发表评论
