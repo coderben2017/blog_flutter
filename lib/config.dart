@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 const appConfig = {'title': 'flutter个人博客模板'};
 
+const baseUrl = 'http://192.168.1.137:3001';
+
 const primaryColor = const MaterialColor(
   0xFF66BB6A,
   <int, Color>{
@@ -34,5 +36,3 @@ const lightGreen = const MaterialColor(0xFFE8F5E9, <int, Color>{
 const lightGrey = const MaterialColor(0xf7f7f7f7, <int, Color>{
   50: Color(0xf7f7f7f7),
 });
-
-const baseUrl = 'http://192.168.1.135:3001';

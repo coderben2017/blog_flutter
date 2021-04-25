@@ -1,7 +1,5 @@
-import 'package:blog_flutter/widgets/article.dart';
-import 'package:blog_flutter/widgets/home.dart';
+import 'package:blog_flutter/router.dart';
 import 'package:flutter/material.dart';
-import './widgets/home.dart';
 import 'config.dart';
 
 void main() {
@@ -15,10 +13,7 @@ class App extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: primaryColor,
         ),
-        routes: {
-          '/home': (context) => HomeWidget(),
-          '/article': (context) => ArticleWidget()
-        },
-        home: HomeWidget());
+        routes: routerMap,
+        home: homeWidget);
   }
 }
