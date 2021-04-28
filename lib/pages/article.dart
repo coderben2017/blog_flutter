@@ -13,6 +13,7 @@ class ArticleWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(params['title'])),
       body: Container(
+        width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         padding: EdgeInsets.fromLTRB(15, 10, 10, 10),
         decoration: BoxDecoration(color: lightGreen),
