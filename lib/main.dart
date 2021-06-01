@@ -1,3 +1,4 @@
+import 'package:blog_flutter/pages/login.dart';
 import 'package:blog_flutter/router.dart';
 import 'package:flutter/material.dart';
 import 'config.dart';
@@ -14,6 +15,6 @@ class App extends StatelessWidget {
           primarySwatch: primaryColor,
         ),
         routes: routerMap,
-        home: homeWidget);
+        home: LoginWidget());
   }
 }

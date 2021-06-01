@@ -1,4 +1,7 @@
+import 'package:blog_flutter/config.dart';
+import 'package:blog_flutter/services/user_service.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginWidget extends StatefulWidget {
   @override
@@ -8,9 +11,14 @@ class LoginWidget extends StatefulWidget {
 class LoginWidgetState extends State<LoginWidget> {
   final title = '新增文章';
 
-  TextEditingController _unameController = new TextEditingController();
-  TextEditingController _pwdController = new TextEditingController();
+  TextEditingController _userNameController = new TextEditingController();
+  TextEditingController _passwordController = new TextEditingController();
   GlobalKey _formKey = new GlobalKey<FormState>();
+
+  void _login(String userName, String password) async {
+    await UserService.login(userName, password);
+    Navigator.of(context).pushNamed('/home');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,25 +35,19 @@ class LoginWidgetState extends State<LoginWidget> {
             children: <Widget>[
               TextFormField(
                   autofocus: true,
-                  controller: _unameController,
-                  decoration: InputDecoration(
-                      labelText: "用户名",
-                      hintText: "用户名或邮箱",
-                      icon: Icon(Icons.person)),
+                  controller: _userNameController,
+                  decoration: InputDecoration(labelText: "用户名", hintText: "用户名或邮箱", icon: Icon(Icons.person)),
                   // 校验用户名
                   validator: (v) {
                     return v.trim().length > 0 ? null : "用户名不能为空";
                   }),
               TextFormField(
-                  controller: _pwdController,
-                  decoration: InputDecoration(
-                      labelText: "密码",
-                      hintText: "您的登录密码",
-                      icon: Icon(Icons.lock)),
+                  controller: _passwordController,
+                  decoration: InputDecoration(labelText: "密码", hintText: "您的登录密码", icon: Icon(Icons.lock)),
                   obscureText: true,
                   //校验密码
                   validator: (v) {
-                    return v.trim().length > 5 ? null : "密码不能少于6位";
+                    return v.trim().length > 3 ? null : "密码不能少于4位";
                   }),
               // 登录按钮
               Padding(
@@ -53,22 +55,19 @@ class LoginWidgetState extends State<LoginWidget> {
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      child: RaisedButton(
-                        padding: EdgeInsets.all(15.0),
+                      child: ElevatedButton(
                         child: Text("登录"),
-                        color: Theme.of(context).primaryColor,
-                        textColor: Colors.white,
+                        style: ButtonStyle(
+                            foregroundColor: MaterialStateProperty.all(Colors.white),
+                            backgroundColor: MaterialStateProperty.resolveWith((states) {
+                              if (states.contains(MaterialState.pressed)) {
+                                return primaryColor[600];
+                              }
+                              return primaryColor;
+                            })),
                         onPressed: () {
-                          //在这里不能通过此方式获取FormState，context不对
-                          //print(Form.of(context));
-
-                          // 通过_formKey.currentState 获取FormState后，
-                          // 调用validate()方法校验用户名密码是否合法，校验
-                          // 通过后再提交数据。
                           if ((_formKey.currentState as FormState).validate()) {
-                            //验证通过提交数据
-                            print(_unameController.text);
-                            print(_pwdController.text);
+                            _login(_userNameController.text, _passwordController.text);
                           }
                         },
                       ),

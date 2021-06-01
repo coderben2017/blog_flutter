@@ -19,7 +19,6 @@ class HomeWidgetState extends State<HomeWidget> {
 
   void _getArticles() async {
     var response = await ArticleService.getArticles(_start, _limit);
-    print(response);
     setState(() {
       _articles.addAll(response.data['data']);
       _total = response.data['total'];
