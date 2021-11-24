@@ -44,12 +44,11 @@ class HomeWidgetState extends State<HomeWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-            child: Text(
-          appConfig['title'],
-          style: TextStyle(color: Colors.white),
-        )),
-      ),
+          centerTitle: true,
+          title: Text(
+            appConfig['title'],
+            style: TextStyle(color: Colors.amberAccent),
+          )),
       body: RefreshIndicator(
         onRefresh: _handlePullDownRefresh,
         child: ListView.separated(

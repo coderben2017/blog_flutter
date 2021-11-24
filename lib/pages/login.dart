@@ -1,7 +1,6 @@
 import 'package:blog_flutter/config.dart';
 import 'package:blog_flutter/services/user_service.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginWidget extends StatefulWidget {
   @override
@@ -36,14 +35,20 @@ class LoginWidgetState extends State<LoginWidget> {
               TextFormField(
                   autofocus: true,
                   controller: _userNameController,
-                  decoration: InputDecoration(labelText: "用户名", hintText: "用户名或邮箱", icon: Icon(Icons.person)),
+                  decoration: InputDecoration(
+                      labelText: "用户名",
+                      hintText: "用户名或邮箱",
+                      icon: Icon(Icons.person)),
                   // 校验用户名
                   validator: (v) {
                     return v.trim().length > 0 ? null : "用户名不能为空";
                   }),
               TextFormField(
                   controller: _passwordController,
-                  decoration: InputDecoration(labelText: "密码", hintText: "您的登录密码", icon: Icon(Icons.lock)),
+                  decoration: InputDecoration(
+                      labelText: "密码",
+                      hintText: "您的登录密码",
+                      icon: Icon(Icons.lock)),
                   obscureText: true,
                   //校验密码
                   validator: (v) {
@@ -58,8 +63,10 @@ class LoginWidgetState extends State<LoginWidget> {
                       child: ElevatedButton(
                         child: Text("登录"),
                         style: ButtonStyle(
-                            foregroundColor: MaterialStateProperty.all(Colors.white),
-                            backgroundColor: MaterialStateProperty.resolveWith((states) {
+                            foregroundColor:
+                                MaterialStateProperty.all(Colors.white),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith((states) {
                               if (states.contains(MaterialState.pressed)) {
                                 return primaryColor[600];
                               }
@@ -67,7 +74,8 @@ class LoginWidgetState extends State<LoginWidget> {
                             })),
                         onPressed: () {
                           if ((_formKey.currentState as FormState).validate()) {
-                            _login(_userNameController.text, _passwordController.text);
+                            _login(_userNameController.text,
+                                _passwordController.text);
                           }
                         },
                       ),

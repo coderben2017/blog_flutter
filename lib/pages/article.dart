@@ -2,16 +2,19 @@ import 'package:blog_flutter/config.dart';
 import 'package:flutter/material.dart';
 
 class ArticleWidget extends StatelessWidget {
-  final article;
-
-  ArticleWidget({Key key, @required this.article}) : super(key: key);
+  ArticleWidget({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final Map params = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
-      appBar: AppBar(title: Text(params['title'])),
+      appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            params['title'],
+            style: TextStyle(color: Colors.amberAccent),
+          )),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,

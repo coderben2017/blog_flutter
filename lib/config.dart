@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 const appConfig = {'title': 'flutter个人博客模板'};
 
-const baseUrl = 'http://2.0.1.173:3001';
+const baseUrl = 'http://2.0.2.44:3001';
 
 const primaryColor = const MaterialColor(
   0xFF66BB6A,
